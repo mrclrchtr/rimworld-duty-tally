@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Duty Tally</name>
+	<author>mrclrchtr</author>
+	<packageId>mrclrchtr.DutyTally</packageId>
+	<modVersion>1.0</modVersion>
+	<description>
+Keep your colony running smoothly with Duty Tally!
+
+This lightweight mod adds a Job Count column to the Work tab, showing exactly how many work types each colonist is assigned.
+No more guessing who’s overworked or underutilized — manage your pawns’ workload with precision.
+
+Features:
+✅ Instant Overview: See assigned job counts at a glance.
+✅ Sortable Column: Organize colonists by workload (or laziness!).
+✅ Vanilla-Friendly: Seamlessly integrates with RimWorld’s UI.
+✅ Zero Performance Impact: Runs efficiently, even in massive colonies.
+
+"The Overseer’s best friend since 5500."
+	</description>
+	<supportedVersions>
+		<li>1.5</li>
+	</supportedVersions>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>brrainz.harmony</li>
+	</loadAfter>
+</ModMetaData>
