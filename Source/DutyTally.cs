@@ -8,7 +8,7 @@ using Verse;
 
 namespace DutyTally
 {
-    public class PawnColumnWorker_Workload : PawnColumnWorker
+    public class PawnColumnWorkerWorkload : PawnColumnWorker
     {
         private static readonly WorkTypeDef[] AllWorkTypes = DefDatabase<WorkTypeDef>.AllDefs.ToArray();
 
@@ -81,7 +81,7 @@ namespace DutyTally
                 var jobCountColumnDef = new PawnColumnDef
                 {
                     defName = workloadDefName,
-                    workerClass = typeof(PawnColumnWorker_Workload),
+                    workerClass = typeof(PawnColumnWorkerWorkload),
                     sortable = true,
                     label = "DutyTally_Workload".Translate(),
                     headerTip = "DutyTally_WorkloadTip".Translate()
