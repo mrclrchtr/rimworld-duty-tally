@@ -6,7 +6,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace DutyTally
+namespace mrclrchtr.DutyTally.Source
 {
     public class PawnColumnWorkerWorkload : PawnColumnWorker
     {
@@ -14,15 +14,23 @@ namespace DutyTally
 
         public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
         {
-            int jobCount = GetAssignedJobsForPawn(pawn);
+            var jobCount = GetAssignedJobsForPawn(pawn);
             Text.Anchor = TextAnchor.MiddleCenter;
-            Widgets.Label(rect, jobCount.ToString());
-            Text.Anchor = TextAnchor.UpperLeft;
+            try
+            {
+                Widgets.Label(rect, jobCount.ToString());
+            }
+            finally
+            {
+                Text.Anchor = TextAnchor.UpperLeft;
+            }
         }
 
         public override int Compare(Pawn a, Pawn b)
         {
-            return GetAssignedJobsForPawn(a).CompareTo(GetAssignedJobsForPawn(b));
+            var aJobs = GetAssignedJobsForPawn(a);
+            var bJobs = GetAssignedJobsForPawn(b);
+            return aJobs.CompareTo(bJobs);
         }
 
         public override int GetOptimalWidth(PawnTable table)
@@ -59,8 +67,7 @@ namespace DutyTally
 
         private static void AddJobCountColumn()
         {
-
-            var workloadDefName = "DutyTally_Workload";
+            const string workloadDefName = "DutyTally_Workload";
 
             try
             {
@@ -71,10 +78,12 @@ namespace DutyTally
                     return;
                 }
 
-                // Check for existing column
-                if (workTableDef.columns.Any(c => c.defName == workloadDefName))
+                // Check for existing column to handle hot-reloads
+                var existingColumn = workTableDef.columns.FirstOrDefault(c => c.defName == workloadDefName);
+                if (existingColumn != null)
                 {
-                    Log.Warning("[DutyTally] Column already exists - skipping");
+                    Log.Warning("[DutyTally] Workload column already exists at position " +
+                                workTableDef.columns.IndexOf(existingColumn) + " - skipping");
                     return;
                 }
 
@@ -86,17 +95,7 @@ namespace DutyTally
                     label = "DutyTally_Workload".Translate(),
                     headerTip = "DutyTally_WorkloadTip".Translate()
                 };
-
-                // Insert near "Priority" column
-                int researchIndex = workTableDef.columns.FindIndex(c => c.defName == "WorkPriority_Research");
-                if (researchIndex == -1)
-                {
-                    Log.Warning("[DutyTally] WorkPriority_Research column not found - appending to end");
-                    researchIndex = workTableDef.columns.Count;
-                }
-
-                int insertIndex = researchIndex + 1;
-                workTableDef.columns.Insert(insertIndex, jobCountColumnDef);
+                workTableDef.columns.Add(jobCountColumnDef);
                 Log.Message("[DutyTally] Successfully added workload column");
             }
             catch (Exception ex)
