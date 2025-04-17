@@ -3,6 +3,7 @@ using Verse;
 
 namespace mrclrchtr.DutyTally.Source
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class DutyTallyMod : Mod
     {
         public static DutyTallySettings Settings;
@@ -14,16 +15,19 @@ namespace mrclrchtr.DutyTally.Source
 
         public override string SettingsCategory()
         {
-            return "Duty Tally"; // Can be translated later if needed
+            return "DutyTally";
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
             var listingStandard = new Listing_Standard();
             listingStandard.Begin(inRect);
-            listingStandard.CheckboxLabeled("DutyTally_IgnoreInvisibleWorkTypes".Translate(), ref Settings.IgnoreInvisibleWorkTypes, "DutyTally_IgnoreInvisibleWorkTypesTip".Translate());
+            listingStandard.CheckboxLabeled("DutyTally_IgnoreInvisibleWorkTypes".Translate(),
+                ref Settings.IgnoreInvisibleWorkTypes, "DutyTally_IgnoreInvisibleWorkTypesTip".Translate());
+            listingStandard.Gap();
+            listingStandard.CheckboxLabeled("DutyTally_UseWeightedPriorities".Translate(),
+                ref Settings.UseWeightedPriorities, "DutyTally_UseWeightedPrioritiesTip".Translate());
             listingStandard.End();
-            Settings.Write(); // Write settings when the window closes implicitly handles this, but explicit call is fine too.
             base.DoSettingsWindowContents(inRect);
         }
     }

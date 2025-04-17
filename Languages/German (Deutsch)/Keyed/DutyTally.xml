@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 	<DutyTally_Workload>Arbeitslast</DutyTally_Workload>
-	<DutyTally_WorkloadTip>Anzahl der zugewiesenen Jobs</DutyTally_WorkloadTip>
-	<DutyTally_IgnoreInvisibleWorkTypes>Unsichtbare Arbeitstypen ignorieren</DutyTally_IgnoreInvisibleWorkTypes>
-	<DutyTally_IgnoreInvisibleWorkTypesTip>Wenn aktiviert, werden Arbeitstypen, die normalerweise nicht im Arbeitsreiter sichtbar sind (wie 'Finish Off' von Allow Tool), nicht zur Arbeitslast gezählt.</DutyTally_IgnoreInvisibleWorkTypesTip>
+	<DutyTally_WorkloadTip>Zeigt, wie beschäftigt dieser Kolonist ist. Kann eine einfache Job-Zählung sein oder nach Priorität gewichtet werden (P1=4, P2=3, P3=2, P4=1). Du kannst das in den Mod-Einstellungen ändern.</DutyTally_WorkloadTip>
+	<DutyTally_IgnoreInvisibleWorkTypes>Versteckte Jobs ignorieren</DutyTally_IgnoreInvisibleWorkTypes>
+	<DutyTally_IgnoreInvisibleWorkTypesTip>Setz hier ein Häkchen, um Jobs zu ignorieren, die du normalerweise nicht im Arbeitsreiter siehst (z.B. 'Finish Off' von Allow Tool), wenn die Arbeitslast ermittelt wird.</DutyTally_IgnoreInvisibleWorkTypesTip>
+	<DutyTally_UseWeightedPriorities>Nach Priorität bewerten</DutyTally_UseWeightedPriorities>
+	<DutyTally_UseWeightedPrioritiesTip>Setz hier ein Häkchen, um die Arbeitslast nach Priorität zu bewerten (P1=4, P2=3, P3=2, P4=1). Lass es deaktiviert für eine einfache Zählung der Jobs.</DutyTally_UseWeightedPrioritiesTip>
 </LanguageData>

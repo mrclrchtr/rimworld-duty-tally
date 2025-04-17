@@ -13,6 +13,15 @@ namespace mrclrchtr.DutyTally.Source
     {
         private static readonly WorkTypeDef[] AllWorkTypes = DefDatabase<WorkTypeDef>.AllDefs.ToArray();
 
+        // Define weights for priorities 1 through 4
+        private static readonly Dictionary<int, int> PriorityWeights = new Dictionary<int, int>
+        {
+            { 1, 4 },
+            { 2, 3 },
+            { 3, 2 },
+            { 4, 1 }
+        };
+
         public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
         {
             var jobCount = GetAssignedJobsForPawn(pawn);
@@ -48,17 +57,36 @@ namespace mrclrchtr.DutyTally.Source
 
             IEnumerable<WorkTypeDef> workTypesToConsider = AllWorkTypes;
 
-            // Apply setting filter
             if (DutyTallyMod.Settings.IgnoreInvisibleWorkTypes)
             {
                 workTypesToConsider = workTypesToConsider.Where(wt => wt.visible);
             }
 
-            return workTypesToConsider.Count(wt => pawn.workSettings.GetPriority(wt) > 0);
+            if (DutyTallyMod.Settings.UseWeightedPriorities)
+            {
+                // Calculate weighted sum of priorities
+                var weightedSum = 0;
+                foreach (var wt in workTypesToConsider)
+                {
+                    var priority = pawn.workSettings.GetPriority(wt);
+                    if (priority > 0 && PriorityWeights.TryGetValue(priority, out int weight))
+                    {
+                        weightedSum += weight;
+                    }
+                }
+
+                return weightedSum;
+            }
+            else
+            {
+                // Original count logic
+                return workTypesToConsider.Count(wt => pawn.workSettings.GetPriority(wt) > 0);
+            }
         }
     }
 
     [StaticConstructorOnStartup]
+    // ReSharper disable once UnusedType.Global
     public static class DutyTallyInitializer
     {
         static DutyTallyInitializer()
@@ -83,7 +111,7 @@ namespace mrclrchtr.DutyTally.Source
 
             try
             {
-                PawnTableDef workTableDef = PawnTableDefOf.Work;
+                var workTableDef = PawnTableDefOf.Work;
                 if (workTableDef == null)
                 {
                     Log.Error("[DutyTally] Work table def not found");

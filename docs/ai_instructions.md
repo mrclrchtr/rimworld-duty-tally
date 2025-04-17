@@ -3,7 +3,7 @@
 ## 1. Overview
 
 *   **Purpose:** Adds a sortable "Workload" column to RimWorld's "Work" tab, showing the count of assigned work types per pawn.
-*   **Core Feature:** Dynamically adds a `PawnColumnDef` to `PawnTableDefOf.Work`.
+*   **Core Features:** Dynamically adds a `PawnColumnDef` to `PawnTableDefOf.Work`. Provides options to calculate workload as a simple count or a weighted sum based on priority.
 
 ## 2. Key Components
 
@@ -13,22 +13,25 @@
     *   Initializes Harmony (`mrclrchtr.DutyTally`).
 *   **`PawnColumnWorkerWorkload` (`Source/DutyTally.cs`):**
     *   Implements the column logic (`PawnColumnWorker`).
-    *   `DoCell()`: Renders the workload count.
-    *   `Compare()`: Sorts pawns by workload.
-    *   `GetAssignedJobsForPawn()`: Calculates the count, considering the `IgnoreInvisibleWorkTypes` setting. Iterates `DefDatabase<WorkTypeDef>.AllDefs`.
+    *   `DoCell()`: Renders the workload count/score.
+    *   `Compare()`: Sorts pawns by workload score.
+    *   `GetAssignedJobsForPawn()`: Calculates the workload. If `UseWeightedPriorities` is true, calculates a weighted sum using `PriorityWeights` (P1=4, P2=3, P3=2, P4=1). Otherwise, calculates a simple count of assigned tasks. Considers the `IgnoreInvisibleWorkTypes` setting. Iterates `DefDatabase<WorkTypeDef>.AllDefs`.
+    *   `PriorityWeights` (static Dictionary): Stores the weights for each priority level.
 *   **`DutyTallyMod` (`Source/DutyTallyMod.cs`):**
     *   Extends `Mod`. Handles the settings UI.
-    *   `DoSettingsWindowContents()`: Displays the checkbox for `IgnoreInvisibleWorkTypes`.
+    *   `DoSettingsWindowContents()`: Displays checkboxes for `IgnoreInvisibleWorkTypes` and `UseWeightedPriorities`.
 *   **`DutyTallySettings` (`Source/DutyTallySettings.cs`):**
     *   Extends `ModSettings`.
     *   `IgnoreInvisibleWorkTypes` (bool): Setting to exclude work types with `visible == false`. Default: `true`.
-    *   `ExposeData()`: Saves/loads the setting.
+    *   `UseWeightedPriorities` (bool): Setting to switch between simple count and weighted priority scoring. Default: `true`.
+    *   `ExposeData()`: Saves/loads the settings.
 
 ## 3. Technical Details
 
 *   **Dependencies:** Harmony (required, listed in `About/About.xml`).
 *   **Initialization:** Via `StaticConstructorOnStartup` and `LongEventHandler`, not explicit Harmony patches for column addition.
 *   **Localization:** Standard keyed translations (`Languages/*/Keyed/DutyTally.xml`). Keys: `DutyTally_Workload`, `DutyTally_WorkloadTip`, `DutyTally_IgnoreInvisibleWorkTypes`, `DutyTally_IgnoreInvisibleWorkTypesTip`. Accessed via `.Translate()`.
+*   **Localization Keys:** `DutyTally_Workload`, `DutyTally_WorkloadTip`, `DutyTally_IgnoreInvisibleWorkTypes`, `DutyTally_IgnoreInvisibleWorkTypesTip`, `DutyTally_UseWeightedPriorities`, `DutyTally_UseWeightedPrioritiesTip`. Accessed via `.Translate()`.
 *   **Project Structure:** Standard RimWorld mod layout (`About/`, `Assemblies/`, `Languages/`, `Source/`). Uses `.csproj` for build configuration.
 
 ## 4. Documentation Maintenance
