@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Source\DutyTally.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\DutyTallyMod.cs" />
+    <Compile Include="Source\DutyTallySettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">

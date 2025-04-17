@@ -5,6 +5,7 @@ using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using System.Collections.Generic;
 
 namespace mrclrchtr.DutyTally.Source
 {
@@ -40,9 +41,20 @@ namespace mrclrchtr.DutyTally.Source
 
         private static int GetAssignedJobsForPawn(Pawn pawn)
         {
-            return pawn?.workSettings?.EverWork ?? false
-                ? AllWorkTypes.Count(wt => pawn.workSettings.GetPriority(wt) > 0)
-                : 0;
+            if (!(pawn?.workSettings?.EverWork ?? false))
+            {
+                return 0;
+            }
+
+            IEnumerable<WorkTypeDef> workTypesToConsider = AllWorkTypes;
+
+            // Apply setting filter
+            if (DutyTallyMod.Settings.IgnoreInvisibleWorkTypes)
+            {
+                workTypesToConsider = workTypesToConsider.Where(wt => wt.visible);
+            }
+
+            return workTypesToConsider.Count(wt => pawn.workSettings.GetPriority(wt) > 0);
         }
     }
 

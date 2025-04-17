@@ -2,4 +2,6 @@
 <LanguageData>
 	<DutyTally_Workload>Workload</DutyTally_Workload>
 	<DutyTally_WorkloadTip>Number of assigned work types</DutyTally_WorkloadTip>
+	<DutyTally_IgnoreInvisibleWorkTypes>Ignore invisible work types</DutyTally_IgnoreInvisibleWorkTypes>
+	<DutyTally_IgnoreInvisibleWorkTypesTip>If checked, work types not normally visible in the work tab (like 'Finish Off' from Allow Tool) will not be counted towards the workload.</DutyTally_IgnoreInvisibleWorkTypesTip>
 </LanguageData>

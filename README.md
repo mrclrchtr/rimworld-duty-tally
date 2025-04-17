@@ -11,7 +11,7 @@ Duty Tally is a lightweight RimWorld mod that adds a "Workload" column to the Wo
 - **Workload Column**: Adds a new column to the Work tab showing assigned job count
 - **Sortable**: Click the column header to sort colonists by workload
 - **Vanilla-Friendly**: Seamlessly integrates with RimWorld's UI
-- **No Configuration Needed**: Works right out of the box
+- **Configurable**: Option to ignore invisible work types (e.g., from other mods)
 
 ## Screenshots
 When installed, you'll see a new "Workload" column in your Work tab that shows the number of work types each colonist is assigned to:
@@ -46,8 +46,8 @@ It's just UI customization.
 **Q: Does this work with other work tab mods?**  
 A: It should be compatible with most mods that modify the Work tab.
 
-**Q: Why is the number not correct?**   
-A: There may be invisible work types such as “Finish off” from the “Allow Tool” mod that are counted.
+**Q: Why is the number not correct?**
+A: By default, the mod counts all work types, including those not normally visible in the work tab (like 'Finish Off' from the 'Allow Tool' mod). You can change this behavior in the mod settings by enabling the "Ignore invisible work types" option.
 
 ## Contributing
 Contributions are welcome! Feel free to submit pull requests or open issues on GitHub.

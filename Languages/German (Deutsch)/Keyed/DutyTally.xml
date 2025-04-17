@@ -2,4 +2,6 @@
 <LanguageData>
 	<DutyTally_Workload>Arbeitslast</DutyTally_Workload>
 	<DutyTally_WorkloadTip>Anzahl der zugewiesenen Jobs</DutyTally_WorkloadTip>
+	<DutyTally_IgnoreInvisibleWorkTypes>Unsichtbare Arbeitstypen ignorieren</DutyTally_IgnoreInvisibleWorkTypes>
+	<DutyTally_IgnoreInvisibleWorkTypesTip>Wenn aktiviert, werden Arbeitstypen, die normalerweise nicht im Arbeitsreiter sichtbar sind (wie 'Finish Off' von Allow Tool), nicht zur Arbeitslast gezählt.</DutyTally_IgnoreInvisibleWorkTypesTip>
 </LanguageData>

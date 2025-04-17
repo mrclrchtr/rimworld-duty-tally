@@ -4,18 +4,18 @@
 	<author>mrclrchtr</author>
 	<packageId>mrclrchtr.DutyTally</packageId>
 	<url>https://steamcommunity.com/workshop/filedetails/?id=3453334436</url>
-	<modVersion>1.0</modVersion>
+	<modVersion>1.1</modVersion>
 	<description>
 Keep your colony running smoothly with Duty Tally!
 
-This lightweight mod adds a Job Count column to the Work tab, showing exactly how many work types each colonist is assigned.
-No more guessing who’s overworked or underutilized — manage your pawns’ workload with precision.
+This lightweight mod adds a "Workload" column to the Work tab, showing exactly how many work types each colonist is assigned.
+Instantly see who’s overworked or underutilized and manage your pawns’ workload with precision.
 
 Features:
-✅ Instant Overview: See assigned job counts at a glance.
-✅ Sortable Column: Organize colonists by workload (or laziness!).
-✅ Vanilla-Friendly: Seamlessly integrates with RimWorld’s UI.
-✅ Zero Performance Impact: Runs efficiently, even in massive colonies.
+✅ Workload Column: See assigned job counts at a glance in the Work tab.
+✅ Sortable: Click the column header to easily organize colonists by workload.
+✅ Configurable: Option to ignore invisible work types (like those added by other mods).
+✅ Vanilla-Friendly: Integrates seamlessly with the standard RimWorld UI.
 
 "The Overseer’s best friend since 5500."
 	</description>
