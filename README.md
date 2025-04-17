@@ -10,7 +10,7 @@ Duty Tally is a lightweight RimWorld mod that adds a "Workload" column to the Wo
 ## Features
 - **Workload Column**: Adds a new column to the Work tab showing a workload score.
 - **Sortable**: Click the column header to sort colonists by workload
-- **Weighted Scoring**: Optionally calculate workload based on task priority (P1=4, P2=3, P3=2, P4=1) for a more nuanced view, or use a simple count (configurable in Mod Settings).
+- **Weighted Scoring**: Optionally calculate workload based on task priority. The weighting range and formula (`Max(1, MaxPrioritySetting - Priority)`) are configurable in Mod Settings (defaulting to P1=3, P2=2, P3=1, P4=1), or you can use a simple count.
 - **Vanilla-Friendly**: Seamlessly integrates with RimWorld's UI
 - **Configurable**: Option to ignore invisible work types (e.g., from other mods)
 
@@ -45,7 +45,7 @@ A: Yes, it's safe to add or remove from existing saves.
 It's just UI customization.
 
 **Q: How is the workload score calculated?**
-A: By default, it uses a weighted sum based on task priority (P1=4, P2=3, P3=2, P4=1). You can switch to a simple count of assigned tasks in the Mod Settings.
+A: By default, it uses a weighted sum based on task priority, configurable via the 'Max priority for weighting' setting (default is 4, resulting in P1=3, P2=2, P3=1, P4=1). The weight is calculated as `Max(1, MaxPrioritySetting - Priority)`. You can switch to a simple count of assigned tasks or adjust the weighting range in the Mod Settings.
 
 **Q: Why is the number not correct?**
 A: By default, the mod counts all work types, including those not normally visible in the work tab (like 'Finish Off' from the 'Allow Tool' mod). You can change this behavior in the mod settings by enabling the "Ignore invisible work types" option.

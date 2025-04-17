@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 	<DutyTally_Workload>Workload</DutyTally_Workload>
-	<DutyTally_WorkloadTip>How busy this pawn is. Can be a simple job count or weighted by priority (P1=4, P2=3, P3=2, P4=1). You can change this in the mod settings.</DutyTally_WorkloadTip>
+	<DutyTally_WorkloadTip>How busy this pawn is. Can be a simple job count or weighted by priority. The weighting method and range can be configured in the mod settings.</DutyTally_WorkloadTip>
 	<DutyTally_IgnoreInvisibleWorkTypes>Ignore hidden jobs</DutyTally_IgnoreInvisibleWorkTypes>
 	<DutyTally_IgnoreInvisibleWorkTypesTip>Tick this box to ignore jobs you don't normally see in the work tab (like 'Finish Off' from Allow Tool) when figuring out the workload.</DutyTally_IgnoreInvisibleWorkTypesTip>
 	<DutyTally_UseWeightedPriorities>Score by priority</DutyTally_UseWeightedPriorities>
-	<DutyTally_UseWeightedPrioritiesTip>Tick this box to score workload based on priority (P1=4, P2=3, P3=2, P4=1). Leave it unchecked for a simple job count.</DutyTally_UseWeightedPrioritiesTip>
+	<DutyTally_UseWeightedPrioritiesTip>Tick this box to score workload based on priority. The exact weighting depends on the 'Max priority for weighting' setting below. Leave it unchecked for a simple job count.</DutyTally_UseWeightedPrioritiesTip>
+	<DutyTally_MaxPriorityForWeighting>Max priority for weighting</DutyTally_MaxPriorityForWeighting>
+	<DutyTally_MaxPriorityForWeightingTip>Set the highest priority number (e.g., 1, 2, 3, 4...) that should receive a distinct weight. Priorities 1 through this number will get decreasing weights (e.g., if set to 4, P1=3, P2=2, P3=1, P4=1). The weight is calculated as Max(1, SettingValue - Priority). Any priority number higher than this setting will also receive a weight of 1. Default is 4.</DutyTally_MaxPriorityForWeightingTip>
 </LanguageData>

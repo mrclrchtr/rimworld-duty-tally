@@ -15,15 +15,16 @@
     *   Implements the column logic (`PawnColumnWorker`).
     *   `DoCell()`: Renders the workload count/score.
     *   `Compare()`: Sorts pawns by workload score.
-    *   `GetAssignedJobsForPawn()`: Calculates the workload. If `UseWeightedPriorities` is true, calculates a weighted sum using `PriorityWeights` (P1=4, P2=3, P3=2, P4=1). Otherwise, calculates a simple count of assigned tasks. Considers the `IgnoreInvisibleWorkTypes` setting. Iterates `DefDatabase<WorkTypeDef>.AllDefs`.
-    *   `PriorityWeights` (static Dictionary): Stores the weights for each priority level.
+    *   `CalculateWorkloadScore()`: Calculates the workload. If `UseWeightedPriorities` is true, calculates a weighted sum using the formula `Max(1, MaxPriorityForWeighting - priority)`. The default `MaxPriorityForWeighting` of 4 results in weights P1=3, P2=2, P3=1, P4=1. Otherwise, calculates a simple count of assigned tasks. Considers the `IgnoreInvisibleWorkTypes` setting. Iterates `DefDatabase<WorkTypeDef>.AllDefs`.
 *   **`DutyTallyMod` (`Source/DutyTallyMod.cs`):**
     *   Extends `Mod`. Handles the settings UI.
     *   `DoSettingsWindowContents()`: Displays checkboxes for `IgnoreInvisibleWorkTypes` and `UseWeightedPriorities`.
+    *   Also displays a numeric input field for `MaxPriorityForWeighting`.
 *   **`DutyTallySettings` (`Source/DutyTallySettings.cs`):**
     *   Extends `ModSettings`.
     *   `IgnoreInvisibleWorkTypes` (bool): Setting to exclude work types with `visible == false`. Default: `true`.
     *   `UseWeightedPriorities` (bool): Setting to switch between simple count and weighted priority scoring. Default: `true`.
+    *   `MaxPriorityForWeighting` (int): Setting to determine the maximum priority to apply weighting to. Default: `4`.
     *   `ExposeData()`: Saves/loads the settings.
 
 ## 3. Technical Details
@@ -31,7 +32,7 @@
 *   **Dependencies:** Harmony (required, listed in `About/About.xml`).
 *   **Initialization:** Via `StaticConstructorOnStartup` and `LongEventHandler`, not explicit Harmony patches for column addition.
 *   **Localization:** Standard keyed translations (`Languages/*/Keyed/DutyTally.xml`). Keys: `DutyTally_Workload`, `DutyTally_WorkloadTip`, `DutyTally_IgnoreInvisibleWorkTypes`, `DutyTally_IgnoreInvisibleWorkTypesTip`. Accessed via `.Translate()`.
-*   **Localization Keys:** `DutyTally_Workload`, `DutyTally_WorkloadTip`, `DutyTally_IgnoreInvisibleWorkTypes`, `DutyTally_IgnoreInvisibleWorkTypesTip`, `DutyTally_UseWeightedPriorities`, `DutyTally_UseWeightedPrioritiesTip`. Accessed via `.Translate()`.
+*   **Localization Keys:** `DutyTally_Workload`, `DutyTally_WorkloadTip`, `DutyTally_IgnoreInvisibleWorkTypes`, `DutyTally_IgnoreInvisibleWorkTypesTip`, `DutyTally_UseWeightedPriorities`, `DutyTally_UseWeightedPrioritiesTip`, `DutyTally_MaxPriorityForWeighting`, `DutyTally_MaxPriorityForWeightingTip`. Accessed via `.Translate()`.
 *   **Project Structure:** Standard RimWorld mod layout (`About/`, `Assemblies/`, `Languages/`, `Source/`). Uses `.csproj` for build configuration.
 
 ## 4. Documentation Maintenance

@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 	<DutyTally_Workload>Arbeitslast</DutyTally_Workload>
-	<DutyTally_WorkloadTip>Zeigt, wie beschäftigt dieser Kolonist ist. Kann eine einfache Job-Zählung sein oder nach Priorität gewichtet werden (P1=4, P2=3, P3=2, P4=1). Du kannst das in den Mod-Einstellungen ändern.</DutyTally_WorkloadTip>
+	<DutyTally_WorkloadTip>Zeigt, wie beschäftigt dieser Kolonist ist. Kann eine einfache Job-Zählung sein oder nach Priorität gewichtet werden. Die Gewichtungsmethode und der Bereich können in den Mod-Einstellungen konfiguriert werden.</DutyTally_WorkloadTip>
 	<DutyTally_IgnoreInvisibleWorkTypes>Versteckte Jobs ignorieren</DutyTally_IgnoreInvisibleWorkTypes>
 	<DutyTally_IgnoreInvisibleWorkTypesTip>Setz hier ein Häkchen, um Jobs zu ignorieren, die du normalerweise nicht im Arbeitsreiter siehst (z.B. 'Finish Off' von Allow Tool), wenn die Arbeitslast ermittelt wird.</DutyTally_IgnoreInvisibleWorkTypesTip>
 	<DutyTally_UseWeightedPriorities>Nach Priorität bewerten</DutyTally_UseWeightedPriorities>
-	<DutyTally_UseWeightedPrioritiesTip>Setz hier ein Häkchen, um die Arbeitslast nach Priorität zu bewerten (P1=4, P2=3, P3=2, P4=1). Lass es deaktiviert für eine einfache Zählung der Jobs.</DutyTally_UseWeightedPrioritiesTip>
+	<DutyTally_UseWeightedPrioritiesTip>Setz hier ein Häkchen, um die Arbeitslast nach Priorität zu bewerten. Die genaue Gewichtung hängt von der Einstellung 'Max. Priorität für Gewichtung' unten ab. Lass es deaktiviert für eine einfache Zählung der Jobs.</DutyTally_UseWeightedPrioritiesTip>
+	<DutyTally_MaxPriorityForWeighting>Max. Priorität für Gewichtung</DutyTally_MaxPriorityForWeighting>
+	<DutyTally_MaxPriorityForWeightingTip>Legt die höchste Prioritätsnummer (z.B. 1, 2, 3, 4...) fest, die eine eigene Gewichtung erhalten soll. Prioritäten von 1 bis zu dieser Nummer erhalten absteigende Gewichte (z.B. bei Einstellung 4: P1=3, P2=2, P3=1, P4=1). Die Gewichtung wird berechnet als Max(1, Einstellungswert - Priorität). Jede Prioritätsnummer, die höher als diese Einstellung ist, erhält ebenfalls eine Gewichtung von 1. Standard ist 4.</DutyTally_MaxPriorityForWeightingTip>
 </LanguageData>

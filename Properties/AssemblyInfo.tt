@@ -1,4 +1,4 @@
-﻿
+﻿<#@ template language="C#" #>
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -29,6 +29,11 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.607")]
-[assembly: AssemblyFileVersion("1.0.0.607")]
+[assembly: AssemblyVersion("<#= BaseVersion #>.<#= _revisionNumber #>")]
+[assembly: AssemblyFileVersion("<#= BaseVersion #>.<#= _revisionNumber #>")]
 
+<#+
+	// you can go all in here, but we just change the 1.0.0.xxxx part as an example
+	private const string BaseVersion = "1.0.0";
+	private readonly int _revisionNumber = (int)(DateTime.UtcNow - new DateTime(2017, 7, 19)).TotalSeconds % 10000;
+#>

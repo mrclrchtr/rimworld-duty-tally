@@ -13,15 +13,6 @@ namespace mrclrchtr.DutyTally.Source
     {
         private static readonly WorkTypeDef[] AllWorkTypes = DefDatabase<WorkTypeDef>.AllDefs.ToArray();
 
-        // Define weights for priorities 1 through 4
-        private static readonly Dictionary<int, int> PriorityWeights = new Dictionary<int, int>
-        {
-            { 1, 4 },
-            { 2, 3 },
-            { 3, 2 },
-            { 4, 1 }
-        };
-
         public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
         {
             var workloadScore = CalculateWorkloadScore(pawn);
@@ -62,26 +53,17 @@ namespace mrclrchtr.DutyTally.Source
                 workTypesToConsider = workTypesToConsider.Where(wt => wt.visible);
             }
 
-            if (DutyTallyMod.Settings.UseWeightedPriorities)
-            {
-                // Calculate weighted sum of priorities
-                var weightedSum = 0;
-                foreach (var wt in workTypesToConsider)
-                {
-                    var priority = pawn.workSettings.GetPriority(wt);
-                    if (priority > 0 && PriorityWeights.TryGetValue(priority, out int weight))
-                    {
-                        weightedSum += weight;
-                    }
-                }
-
-                return weightedSum;
-            }
-            else
-            {
+            return DutyTallyMod.Settings.UseWeightedPriorities
+                ?
+                // Calculate weighted sum of priorities dynamically
+                workTypesToConsider
+                    .Select(wt => pawn.workSettings.GetPriority(wt))
+                    .Where(priority => priority > 0)
+                    .Sum(priority => Math.Max(1, 1 + DutyTallyMod.Settings.MaxPriorityForWeighting - priority))
+                :
                 // Original count logic
-                return workTypesToConsider.Count(wt => pawn.workSettings.GetPriority(wt) > 0);
-            }
+                workTypesToConsider
+                    .Count(wt => pawn.workSettings.GetPriority(wt) > 0);
         }
     }
 
