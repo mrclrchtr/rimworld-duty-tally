@@ -30,3 +30,7 @@
 *   **Initialization:** Via `StaticConstructorOnStartup` and `LongEventHandler`, not explicit Harmony patches for column addition.
 *   **Localization:** Standard keyed translations (`Languages/*/Keyed/DutyTally.xml`). Keys: `DutyTally_Workload`, `DutyTally_WorkloadTip`, `DutyTally_IgnoreInvisibleWorkTypes`, `DutyTally_IgnoreInvisibleWorkTypesTip`. Accessed via `.Translate()`.
 *   **Project Structure:** Standard RimWorld mod layout (`About/`, `Assemblies/`, `Languages/`, `Source/`). Uses `.csproj` for build configuration.
+
+## 4. Documentation Maintenance
+
+All changes to the mod’s functionality — whether new features, bug fixes, or refactoring — must be reflected in this document immediately. Update this file alongside your code changes so it always represents the mod’s current state. Use commit messages and, if needed, an internal changelog section to track these updates.
