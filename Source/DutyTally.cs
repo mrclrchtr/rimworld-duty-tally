@@ -24,11 +24,11 @@ namespace mrclrchtr.DutyTally.Source
 
         public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
         {
-            var jobCount = GetAssignedJobsForPawn(pawn);
+            var workloadScore = CalculateWorkloadScore(pawn);
             Text.Anchor = TextAnchor.MiddleCenter;
             try
             {
-                Widgets.Label(rect, jobCount.ToString());
+                Widgets.Label(rect, workloadScore.ToString());
             }
             finally
             {
@@ -38,8 +38,8 @@ namespace mrclrchtr.DutyTally.Source
 
         public override int Compare(Pawn a, Pawn b)
         {
-            var aJobs = GetAssignedJobsForPawn(a);
-            var bJobs = GetAssignedJobsForPawn(b);
+            var aJobs = CalculateWorkloadScore(a);
+            var bJobs = CalculateWorkloadScore(b);
             return aJobs.CompareTo(bJobs);
         }
 
@@ -48,7 +48,7 @@ namespace mrclrchtr.DutyTally.Source
             return 70;
         }
 
-        private static int GetAssignedJobsForPawn(Pawn pawn)
+        private static int CalculateWorkloadScore(Pawn pawn)
         {
             if (!(pawn?.workSettings?.EverWork ?? false))
             {
@@ -89,6 +89,8 @@ namespace mrclrchtr.DutyTally.Source
     // ReSharper disable once UnusedType.Global
     public static class DutyTallyInitializer
     {
+        private const string WorkloadColumnDefName = "DutyTally_Workload";
+
         static DutyTallyInitializer()
         {
             var harmony = new Harmony("mrclrchtr.DutyTally");
@@ -107,8 +109,6 @@ namespace mrclrchtr.DutyTally.Source
 
         private static void AddJobCountColumn()
         {
-            const string workloadDefName = "DutyTally_Workload";
-
             try
             {
                 var workTableDef = PawnTableDefOf.Work;
@@ -119,7 +119,7 @@ namespace mrclrchtr.DutyTally.Source
                 }
 
                 // Check for existing column to handle hot-reloads
-                var existingColumn = workTableDef.columns.FirstOrDefault(c => c.defName == workloadDefName);
+                var existingColumn = workTableDef.columns.FirstOrDefault(c => c.defName == WorkloadColumnDefName);
                 if (existingColumn != null)
                 {
                     Log.Warning("[DutyTally] Workload column already exists at position " +
@@ -129,7 +129,7 @@ namespace mrclrchtr.DutyTally.Source
 
                 var jobCountColumnDef = new PawnColumnDef
                 {
-                    defName = workloadDefName,
+                    defName = WorkloadColumnDefName,
                     workerClass = typeof(PawnColumnWorkerWorkload),
                     sortable = true,
                     label = "DutyTally_Workload".Translate(),
