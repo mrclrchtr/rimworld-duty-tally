@@ -58,4 +58,4 @@ This lightweight mod adds a "Workload" column to the Work tab, showing a score b
 [/list]
 
 [h2]Mod Version:[/h2]
-1.3.0
+1.3.1
