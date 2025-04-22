@@ -50,10 +50,10 @@ namespace mrclrchtr.DutyTally.Source
             listingStandard.Gap();
 
             listingStandard.Gap();
-            string maxPriorityBuffer = _settings.MaxPriorityForWeighting.ToString();
-            Rect numericFieldRect = listingStandard.GetRect(Text.LineHeight);
-            Rect labelRect = numericFieldRect.LeftPart(0.8f).Rounded();
-            Rect fieldRect = numericFieldRect.RightPart(0.2f).Rounded();
+            var maxPriorityBuffer = _settings.MaxPriorityForWeighting.ToString();
+            var numericFieldRect = listingStandard.GetRect(Text.LineHeight);
+            var labelRect = numericFieldRect.LeftPart(0.8f).Rounded();
+            var fieldRect = numericFieldRect.RightPart(0.2f).Rounded();
             Widgets.Label(labelRect, "DutyTally_MaxPriorityForWeighting".Translate());
             TooltipHandler.TipRegion(labelRect, "DutyTally_MaxPriorityForWeightingTip".Translate());
             Widgets.TextFieldNumeric(fieldRect, ref _settings.MaxPriorityForWeighting, ref maxPriorityBuffer, 1, 99);
