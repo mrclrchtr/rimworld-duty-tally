@@ -11,9 +11,9 @@
         <OutputPath Condition=" '$(Configuration)' == 'Debug' ">Build\DutyTally\Assemblies\</OutputPath>
         <OutputPath Condition=" '$(Configuration)' == 'Release' ">Build\DutyTally\Assemblies\</OutputPath>
 
-        <Version>1.3.0.0</Version>
-        <FileVersion>1.3.0</FileVersion>
-        <InformationalVersion>1.3.0</InformationalVersion>
+        <Version>1.3.1.0</Version>
+        <FileVersion>1.3.1</FileVersion>
+        <InformationalVersion>1.3.1</InformationalVersion>
 
         <Company>mrclrchtr.de</Company>
 
