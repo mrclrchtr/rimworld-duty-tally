@@ -22,9 +22,12 @@
         <Copyright>Copyright © 2025</Copyright>
         <Description></Description>
 
-        <DebugSymbols Condition=" '$(Configuration)' == 'Debug' ">false</DebugSymbols>
-        <DebugType Condition=" '$(Configuration)' == 'Debug' ">none</DebugType>
+        <DebugSymbols Condition=" '$(Configuration)' == 'Debug' ">true</DebugSymbols>
+        <DebugType Condition=" '$(Configuration)' == 'Debug' ">portable</DebugType>
         <Optimize Condition=" '$(Configuration)' == 'Release' ">true</Optimize>
+        <DebugSymbols Condition=" '$(Configuration)' == 'Release' ">true</DebugSymbols>
+        <DebugType Condition=" '$(Configuration)' == 'Release' ">portable</DebugType>
+
         <DefineConstants Condition=" '$(Configuration)' == 'Debug' ">DEBUG;TRACE</DefineConstants>
         <DefineConstants Condition=" '$(Configuration)' == 'Release' ">TRACE</DefineConstants>
     </PropertyGroup>
