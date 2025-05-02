@@ -1,7 +1,7 @@
 # Duty Tally
 
 <p align="center">
-  <img src="About/Preview.png" alt="Duty Tally Logo" width="200"/>
+  <img src="Assets/About/Preview.png" alt="Duty Tally Logo" width="200"/>
 </p>
 
 ## Overview
