@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <DutyTally_Workload.label>Arbeitslast</DutyTally_Workload.label>
+  <DutyTally_Workload.headerTip>Zeigt, wie beschäftigt dieser Kolonist ist. Kann eine einfache Job-Zählung sein oder nach Priorität gewichtet werden. Die Gewichtungsmethode und der Bereich können in den Mod-Einstellungen konfiguriert werden.</DutyTally_Workload.headerTip>
+
+</LanguageData>

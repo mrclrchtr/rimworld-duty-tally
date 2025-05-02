@@ -1,52 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
-using System.Collections.Generic;
 
 namespace mrclrchtr.DutyTally.Source
 {
-    public class PawnColumnWorkerWorkload : PawnColumnWorker
+    public class PawnColumnWorkerWorkload : PawnColumnWorker_Text
     {
-        private static readonly WorkTypeDef[] AllWorkTypes = DefDatabase<WorkTypeDef>.AllDefs.ToArray();
+        protected override TextAnchor Anchor => TextAnchor.MiddleCenter;
 
-        public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
+        protected override string GetTextFor(Pawn pawn)
         {
-            var workloadScore = CalculateWorkloadScore(pawn);
-            Text.Anchor = TextAnchor.MiddleCenter;
-            try
-            {
-                Widgets.Label(rect, workloadScore.ToString());
-            }
-            finally
-            {
-                Text.Anchor = TextAnchor.UpperLeft;
-            }
+            return CalculateWorkloadScore(pawn);
         }
 
-        public override int Compare(Pawn a, Pawn b)
-        {
-            var aJobs = CalculateWorkloadScore(a);
-            var bJobs = CalculateWorkloadScore(b);
-            return aJobs.CompareTo(bJobs);
-        }
-
-        public override int GetOptimalWidth(PawnTable table)
-        {
-            return 70;
-        }
-
-        private static int CalculateWorkloadScore(Pawn pawn)
+        private static string CalculateWorkloadScore(Pawn pawn)
         {
             if (!(pawn?.workSettings?.EverWork ?? false))
             {
-                return 0;
+                return "0";
             }
 
-            IEnumerable<WorkTypeDef> workTypesToConsider = AllWorkTypes;
+            IEnumerable<WorkTypeDef> workTypesToConsider = DefDatabase<WorkTypeDef>.AllDefsListForReading;
 
             if (DutyTallyMod.Settings.IgnoreInvisibleWorkTypes)
             {
@@ -60,70 +37,12 @@ namespace mrclrchtr.DutyTally.Source
                     .Select(wt => pawn.workSettings.GetPriority(wt))
                     .Where(priority => priority > 0)
                     .Sum(priority => Math.Max(1, 1 + DutyTallyMod.Settings.MaxPriorityForWeighting - priority))
+                    .ToString()
                 :
                 // Original count logic
                 workTypesToConsider
-                    .Count(wt => pawn.workSettings.GetPriority(wt) > 0);
-        }
-    }
-
-    [StaticConstructorOnStartup]
-    // ReSharper disable once UnusedType.Global
-    public static class DutyTallyInitializer
-    {
-        private const string WorkloadColumnDefName = "DutyTally_Workload";
-
-        static DutyTallyInitializer()
-        {
-            var harmony = new Harmony("mrclrchtr.DutyTally");
-
-            try
-            {
-                harmony.PatchAll(Assembly.GetExecutingAssembly());
-                LongEventHandler.QueueLongEvent(AddJobCountColumn, "Initializing Duty Tally", true, null);
-            }
-            catch (Exception ex)
-            {
-                harmony.UnpatchAll("mrclrchtr.DutyTally");
-                Log.Error($"[DutyTally] Initialization failed: {ex}");
-            }
-        }
-
-        private static void AddJobCountColumn()
-        {
-            try
-            {
-                var workTableDef = PawnTableDefOf.Work;
-                if (workTableDef == null)
-                {
-                    Log.Error("[DutyTally] Work table def not found");
-                    return;
-                }
-
-                // Check for existing column to handle hot-reloads
-                var existingColumn = workTableDef.columns.FirstOrDefault(c => c.defName == WorkloadColumnDefName);
-                if (existingColumn != null)
-                {
-                    Log.Warning("[DutyTally] Workload column already exists at position " +
-                                workTableDef.columns.IndexOf(existingColumn) + " - skipping");
-                    return;
-                }
-
-                var jobCountColumnDef = new PawnColumnDef
-                {
-                    defName = WorkloadColumnDefName,
-                    workerClass = typeof(PawnColumnWorkerWorkload),
-                    sortable = true,
-                    label = "DutyTally_Workload".Translate(),
-                    headerTip = "DutyTally_WorkloadTip".Translate()
-                };
-                workTableDef.columns.Add(jobCountColumnDef);
-                Log.Message("[DutyTally] Successfully added workload column");
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"[DutyTally] Critical error: {ex}");
-            }
+                    .Count(wt => pawn.workSettings.GetPriority(wt) > 0)
+                    .ToString();
         }
     }
 }

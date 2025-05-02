@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <PawnColumnDef>
+    <defName>DutyTally_Workload</defName>
+    <label>Workload</label>
+    <workerClass>mrclrchtr.DutyTally.Source.PawnColumnWorkerWorkload</workerClass>
+    <sortable>true</sortable>
+    <headerTip>How busy this pawn is. Can be a simple job count or weighted by priority. The weighting method and range can be configured in the mod settings.</headerTip>
+    <width>70</width>
+  </PawnColumnDef>
+
+</Defs>

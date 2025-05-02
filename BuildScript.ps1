@@ -8,10 +8,10 @@ $buildOutput = Join-Path -Path $buildOutputBase -ChildPath "DutyTally" # .\Build
 # *** IMPORTANT: Do NOT include "Assemblies" in this list ***
 $assetFoldersToCleanAndCopy = @(
     "About",
-    "Languages"
-#     "Defs",       # Add if you have Defs
+    "Languages",
+    "Defs",
+    "Patches"
 #     "Textures",   # Add if you have Textures
-#     "Patches"     # Add if you have Patches
     # Add any other folders like "Sounds", etc. that originate from .\Assets
 )
 
