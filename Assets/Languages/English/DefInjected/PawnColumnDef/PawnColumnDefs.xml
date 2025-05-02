@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- It is retained as a translation template, but in fact, English translation is not required. It has been defined in def -->
+
+  <DutyTally_Workload.label>Workload</DutyTally_Workload.label>
+  <DutyTally_Workload.headerTip>How busy this pawn is. Can be a simple job count or weighted by priority. The weighting method and range can be configured in the mod settings.</DutyTally_Workload.headerTip>
+
+</LanguageData>

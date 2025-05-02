@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-	<DutyTally_Workload>Workload</DutyTally_Workload>
-	<DutyTally_WorkloadTip>How busy this pawn is. Can be a simple job count or weighted by priority. The weighting method and range can be configured in the mod settings.</DutyTally_WorkloadTip>
 	<DutyTally_IgnoreInvisibleWorkTypes>Ignore hidden jobs</DutyTally_IgnoreInvisibleWorkTypes>
 	<DutyTally_IgnoreInvisibleWorkTypesTip>Tick this box to ignore jobs you don't normally see in the work tab (like 'Finish Off' from Allow Tool) when figuring out the workload.</DutyTally_IgnoreInvisibleWorkTypesTip>
 	<DutyTally_UseWeightedPriorities>Score by priority</DutyTally_UseWeightedPriorities>

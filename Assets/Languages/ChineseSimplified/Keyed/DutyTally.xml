@@ -1,0 +1,11 @@
+﻿<LanguageData>
+	<DutyTally_IgnoreInvisibleWorkTypes>忽略隐藏的工作类型</DutyTally_IgnoreInvisibleWorkTypes>
+	<DutyTally_IgnoreInvisibleWorkTypesTip>勾选此项可在计算工作负载时忽略工作标签页中通常不可见的工作（如 Allow Tool 模组中的“杀死”）。</DutyTally_IgnoreInvisibleWorkTypesTip>
+	
+	<DutyTally_UseWeightedPriorities>按优先级评分</DutyTally_UseWeightedPriorities>
+	<DutyTally_UseWeightedPrioritiesTip>勾选此项可根据优先级对工作负载进行评分。具体的加权方式取决于下面“加权最大优先级”的设置。不勾选则表示使用简单的工作数量统计。</DutyTally_UseWeightedPrioritiesTip>
+	
+	<DutyTally_MaxPriorityForWeighting>加权最大优先级</DutyTally_MaxPriorityForWeighting>
+	<DutyTally_MaxPriorityForWeightingTip>设置需要应用加权的最大优先级数字（例如 1、2、3、4……）。从优先级 1 到该值将获得递减的权重（例如设置为 4 时，P1=3，P2=2，P3=1，P4=1）。权重计算方式为 Max(1, 设置值 - 优先级)。高于此值的优先级将统一视为权重 1。默认值为 4。</DutyTally_MaxPriorityForWeightingTip>
+</LanguageData>
+

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <DutyTally_Workload.label>工作负载</DutyTally_Workload.label>
+  <DutyTally_Workload.headerTip>该殖民者有多忙。可以是简单的工作数量，也可以根据优先级加权计算。加权方法和范围可在模组设置中进行配置。</DutyTally_Workload.headerTip>
+
+</LanguageData>
