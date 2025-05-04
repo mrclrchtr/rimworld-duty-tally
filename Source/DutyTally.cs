@@ -18,7 +18,7 @@ namespace mrclrchtr.DutyTally.Source
 
         private static string CalculateWorkloadScore(Pawn pawn)
         {
-            if (!(pawn?.workSettings?.EverWork ?? false))
+            if (!(pawn.workSettings?.EverWork ?? false))
             {
                 return "0";
             }
